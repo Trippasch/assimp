@@ -7,46 +7,15 @@ project "assimp"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    includedirs {
-        '.',
-        'include',
-        'contrib',
-        'contrib/irrXML',
-        'contrib/unzip',
-        'contrib/zlib',
-        'contrib/pugixml/src',
-        'contrib/rapidjson/include',
-        'code'
-    }
-
-    files {
-        -- Dependencies
-        'contrib/unzip/**',
-        'contrib/irrXML/**',
-        'contrib/zlib/*',
-        -- Common
-        'code/Common/**',
-        'code/PostProcessing/**',
-        'code/Material/**',
-        'code/CApi/**',
-        -- Importers
-        'code/Collada/**',
-        'code/Obj/**',
-        -- 'code/Blender/**', 'contrib/poly2tri/poly2tri/**',
-        'code/FBX/**',
-        'code/glTF2/**',
-        'code/glTF/**',
-        -- 'code/Assbin/**' -- For caching
-    }
--- Importers
     defines {
+        -- Importers
         'ASSIMP_BUILD_NO_3D_IMPORTER',
         'ASSIMP_BUILD_NO_3DS_IMPORTER',
         'ASSIMP_BUILD_NO_3MF_IMPORTER',
         'ASSIMP_BUILD_NO_AC_IMPORTER',
         'ASSIMP_BUILD_NO_AMF_IMPORTER',
         'ASSIMP_BUILD_NO_ASE_IMPORTER',
-        'ASSIMP_BUILD_NO_ASSBIN_IMPORTER',
+        -- 'ASSIMP_BUILD_NO_ASSBIN_IMPORTER',
         'ASSIMP_BUILD_NO_B3D_IMPORTER',
         'ASSIMP_BUILD_NO_BLEND_IMPORTER',
         'ASSIMP_BUILD_NO_BVH_IMPORTER',
@@ -88,25 +57,73 @@ project "assimp"
         'ASSIMP_BUILD_NO_TERRAGEN_IMPORTER',
         'ASSIMP_BUILD_NO_X_IMPORTER',
         'ASSIMP_BUILD_NO_X3D_IMPORTER',
-        'ASSIMP_BUILD_NO_XGL_IMPORTER'
+        'ASSIMP_BUILD_NO_XGL_IMPORTER',
+        'ASSIMP_BUILD_NO_IQM_IMPORTER',
+
+        -- Exporters
+        'ASSIMP_BUILD_NO_EXPORT',
+
+        -- Other
+        "ASSIMP_BUILD_NO_OWN_ZLIB",
+        -- "ASSIMP_BUILD_NO_MAKELEFTHANDED_PROCESS",
+        -- "ASSIMP_BUILD_NO_FLIPUVS_PROCESS",
+        -- "ASSIMP_BUILD_NO_FLIPWINDINGORDER_PROCESS",
+        -- "ASSIMP_BUILD_NO_CALCTANGENTS_PROCESS",
+        "ASSIMP_BUILD_NO_JOINVERTICES_PROCESS",
+        -- "ASSIMP_BUILD_NO_TRIANGULATE_PROCESS",
+        "ASSIMP_BUILD_NO_GENFACENORMALS_PROCESS",
+        -- "ASSIMP_BUILD_NO_GENVERTEXNORMALS_PROCESS",
+        "ASSIMP_BUILD_NO_REMOVEVC_PROCESS",
+        "ASSIMP_BUILD_NO_SPLITLARGEMESHES_PROCESS",
+        "ASSIMP_BUILD_NO_PRETRANSFORMVERTICES_PROCESS",
+        "ASSIMP_BUILD_NO_LIMITBONEWEIGHTS_PROCESS",
+        -- "ASSIMP_BUILD_NO_VALIDATEDS_PROCESS",
+        "ASSIMP_BUILD_NO_IMPROVECACHELOCALITY_PROCESS",
+        "ASSIMP_BUILD_NO_FIXINFACINGNORMALS_PROCESS",
+        "ASSIMP_BUILD_NO_REMOVE_REDUNDANTMATERIALS_PROCESS",
+        "ASSIMP_BUILD_NO_FINDINVALIDDATA_PROCESS",
+        "ASSIMP_BUILD_NO_FINDDEGENERATES_PROCESS",
+        "ASSIMP_BUILD_NO_SORTBYPTYPE_PROCESS",
+        "ASSIMP_BUILD_NO_GENUVCOORDS_PROCESS",
+        "ASSIMP_BUILD_NO_TRANSFORMTEXCOORDS_PROCESS",
+        "ASSIMP_BUILD_NO_FINDINSTANCES_PROCESS",
+        "ASSIMP_BUILD_NO_OPTIMIZEMESHES_PROCESS",
+        "ASSIMP_BUILD_NO_OPTIMIZEGRAPH_PROCESS",
+        "ASSIMP_BUILD_NO_SPLITBYBONECOUNT_PROCESS",
+        "ASSIMP_BUILD_NO_DEBONE_PROCESS",
+        "ASSIMP_BUILD_NO_EMBEDTEXTURES_PROCESS",
+        "ASSIMP_BUILD_NO_GLOBALSCALE_PROCESS",
     }
-    -- Exporters
-    defines {
-        'ASSIMP_BUILD_NO_COLLADA_EXPORTER',
-        'ASSIMP_BUILD_NO_X_EXPORTER',
-        'ASSIMP_BUILD_NO_STEP_EXPORTER',
-        'ASSIMP_BUILD_NO_OBJ_EXPORTER',
-        'ASSIMP_BUILD_NO_STL_EXPORTER',
-        'ASSIMP_BUILD_NO_PLY_EXPORTER',
-        'ASSIMP_BUILD_NO_3DS_EXPORTER',
-        'ASSIMP_BUILD_NO_GLTF_EXPORTER',
-        'ASSIMP_BUILD_NO_ASSBIN_EXPORTER',
-        'ASSIMP_BUILD_NO_ASSXML_EXPORTER',
-        'ASSIMP_BUILD_NO_X3D_EXPORTER',
-        'ASSIMP_BUILD_NO_FBX_EXPORTER',
-        'ASSIMP_BUILD_NO_M3D_EXPORTER',
-        'ASSIMP_BUILD_NO_3MF_EXPORTER',
-        'ASSIMP_BUILD_NO_ASSJSON_EXPORTER'
+
+    includedirs {
+        '.',
+        'include',
+        'contrib',
+        'contrib/unzip',
+        'contrib/zlib',
+        'contrib/pugixml/src',
+        'contrib/rapidjson/include',
+        'code'
+    }
+
+    files {
+        -- Dependencies
+        'contrib/unzip/**',
+        'contrib/pugixml/**',
+        'contrib/zlib/*',
+        -- Common
+        'code/Common/**',
+        'code/PostProcessing/**',
+        'code/Material/**',
+        'code/CApi/**',
+        -- Importers
+        'code/AssetLib/Collada/**',
+        'code/AssetLib/Obj/**',
+        -- 'code/AssetLib/Blender/**', 'contrib/poly2tri/poly2tri/**',
+        'code/AssetLib/FBX/**',
+        'code/AssetLib/glTF2/**',
+        'code/AssetLib/glTF/**',
+        'code/AssetLib/Assbin/**' -- For caching
     }
 
     filter "system:windows"
@@ -119,3 +136,8 @@ project "assimp"
     filter  "configurations:Release"
         runtime "Release"
         optimize "on"
+
+    filter "configurations:Dist"
+        runtime "Release"
+        optimize "on"
+        symbols "off"
