@@ -13,6 +13,7 @@ build
 *.ncb
 *.vcproj
 *.vcxproj.user
+**.vcxproj**
 *.VC.db
 *.VC.db-shm
 *.VC.db-wal
@@ -24,6 +25,7 @@ CMakeSettings.json
 
 # Output
 bin/
+bin-int/
 lib/
 x64/
 # QtCreator
